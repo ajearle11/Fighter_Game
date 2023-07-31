@@ -75,14 +75,18 @@ while game == True:
 
     print("\nP1: Which move would you like: Attack (a), Defense (d), Special Attack (s)")
     p1_choice = input() 
+    print('-----------------------------------------------------------------------------------------------------')
     while p1_choice.lower() != 'a' and p1_choice.lower() != 'd' and p1_choice.lower() != 's':
-        p1_choice = input() 
+        p1_choice = input()
+        print('-----------------------------------------------------------------------------------------------------') 
         
 
     print("\nP2: Which move would you like: Attack (a), Defense (d), Special Attack (s)")
     p2_choice = input() 
+    print('-----------------------------------------------------------------------------------------------------')
     while p2_choice.lower() != 'a' and p2_choice.lower() != 'd' and p2_choice.lower() != 's':
-        p2_choice = input() 
+        p2_choice = input()
+        print('-----------------------------------------------------------------------------------------------------') 
 
     if p1_choice.lower() == 'a':
         p1_move = player_one.attack(player_two.type)
@@ -108,38 +112,61 @@ while game == True:
             p2_defense_output = float(p2_move[slice_method])
             if (p1_damage_output - p2_defense_output) < 1: 
                 player_two.set_health(1)
+                print(f"\n{player_one.name} caused 1 point of damage")
+                print('-----------------------------------------------------------------------------------------------------')
+                
             else: 
                 player_two.set_health(p1_damage_output - p2_defense_output)
+                print(f"\n{player_one.name} caused {p1_damage_output - p2_defense_output} points of damage")
+                print('-----------------------------------------------------------------------------------------------------')
         
         if "attack" in p2_move:
             p2_damage_output = float(p2_move[slice_method])
             player_one.set_health(p2_damage_output)
             player_two.set_health(p1_damage_output)
+            print(f"\n{player_two.name} caused {p2_damage_output} points of damage")
+            print(f"\n{player_one.name} caused {p1_damage_output} points of damage")
+            print('-----------------------------------------------------------------------------------------------------')
 
         if "attack"not in p2_move and "defend" not in p2_move: 
             p2_special_damage_output = float(p2_move)
             player_one.set_health(p2_special_damage_output)
             player_two.set_health(p1_damage_output)
+            print(f"\n{player_two.name} caused {p2_special_damage_output} points of damage")
+            print(f"\n{player_one.name} caused {p1_damage_output} points of damage")
+            print('-----------------------------------------------------------------------------------------------------')
 
     if "attack" not in p1_move and "defend" not in p1_move:
         p1_damage_output = float(p1_move)
 
         if "defend" in p2_move:
             p2_defense_output = float(p2_move[slice_method])
-            if (p1_damage_output - p2_defense_output) < 1: 
+            if (p1_damage_output == 0):
+                pass
+            elif (p1_damage_output - p2_defense_output) < 1: 
                 player_two.set_health(1)
+                print(f"\n{player_one.name} caused 1 point of damage")
+                print('-----------------------------------------------------------------------------------------------------')
             else: 
                 player_two.set_health(p1_damage_output - p2_defense_output)
+                print(f"\n{player_one.name} caused {p1_damage_output - p2_defense_output} points of damage")
+                print('-----------------------------------------------------------------------------------------------------')
         
         if "attack" in p2_move:
             p2_damage_output = float(p2_move[slice_method])
             player_one.set_health(p2_damage_output)
             player_two.set_health(p1_damage_output)
+            print(f"\n{player_two.name} caused {p2_damage_output} points of damage")
+            print(f"\n{player_one.name} caused {p1_damage_output} points of damage")
+            print('-----------------------------------------------------------------------------------------------------')
 
         if "attack" not in p2_move and "defend" not in p2_move: 
             p2_special_damage_output = float(p2_move)
             player_one.set_health(p2_special_damage_output)
             player_two.set_health(p1_damage_output)
+            print(f"\n{player_two.name} caused {p2_special_damage_output} points of damage")
+            print(f"\n{player_one.name} caused {p1_damage_output} points of damage")
+            print('-----------------------------------------------------------------------------------------------------')
 
     if "defend" in p1_move:
         p1_defense_output = float(p1_move[slice_method])
@@ -148,8 +175,12 @@ while game == True:
             p2_damage_output = float(p2_move[slice_method])
             if (p2_damage_output - p1_defense_output) < 1: 
                 player_one.set_health(1)
+                print(f"\n{player_two.name} caused {1} point of damage")
+                print('-----------------------------------------------------------------------------------------------------')
             else: 
                 player_one.set_health(p2_damage_output - p1_defense_output)
+                print(f"\n{player_two.name} caused {p2_damage_output - p1_defense_output} points of damage")
+                print('-----------------------------------------------------------------------------------------------------')
 
         if "attack" not in p2_move and "defend" not in p2_move:
             p2_special_damage_output = float(p2_move)
@@ -157,8 +188,12 @@ while game == True:
                 pass
             elif (p2_special_damage_output - p1_defense_output) < 1: 
                 player_one.set_health(1)
+                print(f"\n{player_two.name} caused {p2_special_damage_output - p1_defense_output} point of damage")
+                print('-----------------------------------------------------------------------------------------------------')
             else: 
                 player_one.set_health(p2_special_damage_output - p1_defense_output)
+                print(f"\n{player_two.name} caused {p2_special_damage_output - p1_defense_output} points of damage")
+                print('-----------------------------------------------------------------------------------------------------')
 
         if "defend" in p2_move:
             pass
@@ -167,6 +202,7 @@ while game == True:
     
     print(f"\n{player_one.name} has {player_one.set_health(0)} health points")
     print(f"\n{player_two.name} has {player_two.set_health(0)} health points")
+    print('-----------------------------------------------------------------------------------------------------')
 
     if player_one.set_health(0) <= 0 or player_two.set_health(0) <= 0:
         if player_one.set_health(0) > player_two.set_health(0):
